@@ -1,0 +1,10 @@
+version: '3.8'
+services:
+  app:
+    build: .
+    volumes:
+      - ./token.json:/app/token.json  # Mount auth token
+    environment:
+      - DATABASE_URL=sqlite:////data/data.db
+    volumes:
+      - ./data:/data
