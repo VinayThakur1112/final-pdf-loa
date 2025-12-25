@@ -5,6 +5,25 @@ from app.email_listener.mail_client import (
     fetch_unseen,
     read_message,
 )
+from app.email_listener.downloader import download_pdf
+from app.email_listener.event_publisher import publish_event
+import time
+import re
+
+
+def get_tid(subject: str) -> str:
+    # import re
+    pattern = r'\b([a-zA-Z0-9]{4}(?:-[a-zA-Z0-9]{4}){3})\b'
+    match = re.search(pattern, subject)
+
+    if match:
+        tid = match.group(1)
+        print("TID:", tid)
+        return tid
+    else:
+        print("No TID found")
+        return "unknown"
+
 
 def listen():
     server = connect()
@@ -18,12 +37,22 @@ def listen():
         for uid in fetch_unseen(server):
             msg = read_message(server, uid)
 
-            print("📧 New email received")
-            print("Subject:", msg.get_subject())
-            print("From:", msg.get_addresses("from"))
+            tid = get_tid(msg.get_subject())
 
             for part in msg.mailparts:
-                if part.filename:
-                    print("📎 Attachment found:", part.filename)
+                if not part.filename:
+                    continue
 
+                file_path = download_pdf(part, tid)
+                if not file_path:
+                    continue
+
+                event = {
+                    "source": "email",
+                    "file_path": file_path,
+                    "filename": part.filename,
+                    "tid": tid,
+                }
+
+                publish_event(event)
         time.sleep(1)
