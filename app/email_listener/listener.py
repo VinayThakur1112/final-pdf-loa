@@ -10,8 +10,6 @@ from app.email_listener.event_publisher import publish_event
 import time
 import re
 
-# todo temp setup
-from app.pdf_processor.processor import process_pdf
 
 def get_tid(subject: str) -> str:
     # import re
@@ -56,8 +54,6 @@ def listen():
                     "tid": tid,
                 }
 
-                # todo temp setup
-                # publish_event(event)
-                process_pdf(event)
-                
+                publish_event(event)
+
         time.sleep(1)

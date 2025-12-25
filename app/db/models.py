@@ -17,7 +17,7 @@ class InvoiceItemModel(Base):
     __tablename__ = "invoice_items"
 
     tid = Column(String, nullable=False)
-    id = Column(String, primary_key=True, autoincrement=True)
+    id = Column(Integer, primary_key=True, autoincrement=True)
     invoice_id = Column(String, ForeignKey("invoices.invoice_id"))
     item_name = Column(String)
     qty = Column(String)
