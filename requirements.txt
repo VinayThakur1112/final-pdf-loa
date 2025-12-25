@@ -8,3 +8,6 @@ pandas
 python-dotenv
 mock
 pytest
+imapclient
+pyzmail36
+python-dotenv
