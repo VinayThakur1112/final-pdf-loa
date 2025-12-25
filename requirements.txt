@@ -11,3 +11,4 @@ pytest
 imapclient
 pyzmail36
 python-dotenv
+psycopg2-binary
