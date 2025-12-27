@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: email-listener
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: email-listener
+  template:
+    metadata:
+      labels:
+        app: email-listener
+    spec:
+      serviceAccountName: email-listener-sa
+      containers:
+      - name: email-listener
+        image: asia-south1-docker.pkg.dev/final-pdf-loa/dit-repo/email-listener:v1
+        envFrom:
+        - secretRef:
+            name: app-config
