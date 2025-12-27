@@ -9,10 +9,12 @@ from app.email_listener.downloader import download_pdf
 from app.email_listener.event_publisher import publish_event
 import time
 import re
+import app.logging as get_logger
+logger = get_logger(__name__)
 
 
 def get_tid(subject: str) -> str:
-    # import re
+    logger.info(f"Extracting TID from subject: {subject}")
     pattern = r'\b([a-zA-Z0-9]{4}(?:-[a-zA-Z0-9]{4}){3})\b'
     match = re.search(pattern, subject)
 
@@ -27,7 +29,7 @@ def get_tid(subject: str) -> str:
 
 def listen():
     server = connect()
-    print("📬 Email listener started...")
+    logger.info("📬 Email listener started...")
 
     while True:
         responses = wait_for_new_mail(server)
@@ -35,6 +37,7 @@ def listen():
             continue
 
         for uid in fetch_unseen(server):
+            logger.info(f"Processing email UID: {uid}")
             msg = read_message(server, uid)
 
             tid = get_tid(msg.get_subject())
