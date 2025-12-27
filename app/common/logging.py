@@ -1,8 +1,6 @@
 import logging
-import json
 import os
 import sys
-from datetime import datetime
 
 # Read GCP project ID (needed for trace correlation)
 GCP_PROJECT_ID = os.getenv("GCP_PROJECT_ID")

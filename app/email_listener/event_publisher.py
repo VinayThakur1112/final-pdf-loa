@@ -1,7 +1,7 @@
 import json
 import os
 from google.cloud import pubsub_v1
-import app.logging as get_logger
+import app.common.logging as get_logger
 logger = get_logger(__name__)
 
 PROJECT_ID = os.getenv("GCP_PROJECT_ID")

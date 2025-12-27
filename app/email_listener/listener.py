@@ -9,7 +9,7 @@ from app.email_listener.downloader import download_pdf
 from app.email_listener.event_publisher import publish_event
 import time
 import re
-import app.logging as get_logger
+import app.common.logging as get_logger
 logger = get_logger(__name__)
 
 
@@ -20,14 +20,15 @@ def get_tid(subject: str) -> str:
 
     if match:
         tid = match.group(1)
-        print("TID:", tid)
+        logger.info(f"TID: {tid}")
         return tid
     else:
-        print("No TID found")
+        logger.warning("No TID found")
         return "unknown"
 
 
 def listen():
+    logger.info("Connecting to mail server...")
     server = connect()
     logger.info("📬 Email listener started...")
 

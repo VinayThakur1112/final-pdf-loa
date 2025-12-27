@@ -1,6 +1,6 @@
 from imapclient import IMAPClient
 import pyzmail
-from app.config import (
+from app.common.config import (
     MAIL_HOST,
     MAIL_PORT,
     MAIL_USER,
