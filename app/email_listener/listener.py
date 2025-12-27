@@ -9,7 +9,7 @@ from app.email_listener.downloader import download_pdf
 from app.email_listener.event_publisher import publish_event
 import time
 import re
-import app.common.logging as get_logger
+from app.common.logging import get_logger
 logger = get_logger(__name__)
 
 

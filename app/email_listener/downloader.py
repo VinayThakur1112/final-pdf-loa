@@ -1,5 +1,5 @@
 import os
-import app.common.logging as get_logger
+from app.common.logging import get_logger
 logger = get_logger(__name__)
 
 DOWNLOAD_DIR = "incoming"

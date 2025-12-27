@@ -15,7 +15,7 @@ spec:
       serviceAccountName: email-listener-sa
       containers:
       - name: email-listener
-        image: asia-south1-docker.pkg.dev/final-pdf-loa/dit-repo/email-listener:v2
+        image: asia-south1-docker.pkg.dev/final-pdf-loa/dit-repo/email-listener:v6
         imagePullPolicy: Always
         envFrom:
         - secretRef:
