@@ -1,9 +1,13 @@
 import logging
 import os
 import sys
+import time
 
 # Read GCP project ID (needed for trace correlation)
 GCP_PROJECT_ID = os.getenv("GCP_PROJECT_ID")
+
+def ist_converter(*args):
+    return time.gmtime(time.mktime(time.localtime()) + 5.5 * 3600)
 
 
 def get_logger(name: str = None) -> logging.Logger:
@@ -25,8 +29,11 @@ def get_logger(name: str = None) -> logging.Logger:
             "[%(filename)s:%(lineno)d] "
             "[%(name)s] "
             "%(message)s"
-        )
+        ),
+        datefmt="%Y-%m-%d %H:%M:%S"
     )
+
+    formatter.converter = ist_converter
 
     handler = logging.StreamHandler(sys.stdout)
     handler.setFormatter(formatter)

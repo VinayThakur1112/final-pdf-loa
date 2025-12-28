@@ -9,7 +9,7 @@ RUN apt-get update && apt-get install -y \
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
-COPY app/ app/
+COPY app/pdf_processor app/pdf_processor
 COPY app/common app/common
 COPY app/gcp app/gcp
 COPY main.py .

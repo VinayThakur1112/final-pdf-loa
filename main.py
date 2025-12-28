@@ -8,6 +8,7 @@ if __name__ == "__main__":
             listen()
         except KeyboardInterrupt:
             print("📪 Email listener stopped by user")
+            
     elif argv[1] == "pdf_processor":
         from app.pdf_processor.subscriber import start_subscriber
         try:
