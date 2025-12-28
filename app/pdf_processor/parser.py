@@ -1,8 +1,11 @@
 import pdfplumber
 import re
 from app.pdf_processor.schema import Invoice, InvoiceItem
+from app.common.logging import get_logger
+logger = get_logger(__name__)
 
 def parse_invoice(pdf_path: str, tid: str) -> Invoice:
+    logger.info(f"Parsing invoice PDF: {pdf_path}")
     with pdfplumber.open(pdf_path) as pdf:
         text = "\n".join(page.extract_text() for page in pdf.pages)
 
@@ -10,6 +13,11 @@ def parse_invoice(pdf_path: str, tid: str) -> Invoice:
     issue_date = _extract_issue_date(text)
     total_due = _extract_total_due(text)
     items = _extract_items(pdf_path, tid)
+    
+    logger.info(f"Extracted Invoice ID: {invoice_id}, \
+                Issue Date: {issue_date}, \
+                Total Due: {total_due}, \
+                Items Count: {len(items)}")
 
     return Invoice(
         tid= tid,
