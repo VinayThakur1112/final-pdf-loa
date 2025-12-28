@@ -1,0 +1,12 @@
+{
+  "rule": [
+    {
+      "action": { "type": "Delete" },
+      "condition": {
+        "age": 30,
+        "matchesPrefix": ["mail/final-pdf-loa/invoices/"],
+        "customTimeBefore": "2025-01-01T00:00:00Z"
+      }
+    }
+  ]
+}

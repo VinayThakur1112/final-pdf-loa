@@ -13,3 +13,4 @@ pyzmail36
 python-dotenv
 psycopg2-binary
 google-cloud-pubsub
+google-cloud-storage

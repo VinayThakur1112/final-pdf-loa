@@ -1,7 +1,6 @@
 import os
 from dotenv import load_dotenv
 
-
 load_dotenv()
 
 MAIL_HOST = os.getenv("MAIL_HOST")

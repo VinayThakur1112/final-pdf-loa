@@ -19,6 +19,7 @@ def get_logger(name: str = None) -> logging.Logger:
 
     formatter = logging.Formatter(
         fmt=(
+            "[%(asctime)s] "
             "[%(levelname)s] "
             f"[{GCP_PROJECT_ID}] "
             "[%(filename)s:%(lineno)d] "
