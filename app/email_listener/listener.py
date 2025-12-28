@@ -58,7 +58,7 @@ def listen():
                 # print(type(part))
                 # print(dir(part))
                 pdf_bytes = part.get_payload()
-                upload_invoice_pdf(
+                upload_result = upload_invoice_pdf(
                     pdf_bytes, 
                     os.path.basename(file_path), 
                     msg.get('message-id'),
@@ -71,6 +71,8 @@ def listen():
                     "file_path": file_path,
                     "filename": os.path.basename(file_path),
                     "tid": tid,
+                    "bucket": upload_result["bucket"],
+                    "object": upload_result["object"],
                 }
 
                 publish_event(event)

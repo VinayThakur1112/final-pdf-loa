@@ -1,11 +1,12 @@
 from datetime import datetime, timezone
+
 from app.gcp.storage import upload_pdf_with_metadata
-import uuid
+# from app.common.config import GCS_BUCKET_ID as BUCKET_NAME
 from app.common.logging import get_logger
 logger = get_logger(__name__)
 
-
-BUCKET_NAME = "dit-final-pdf-loa-datalake"
+import os
+BUCKET_NAME = os.getenv("BUCKET_NAME")
 
 
 def build_object_path(filename: str) -> str:

@@ -1,12 +1,12 @@
 from imapclient import IMAPClient
 import pyzmail
-from app.common.config import (
-    MAIL_HOST,
-    MAIL_PORT,
-    MAIL_USER,
-    MAIL_PASSWORD,
-    MAIL_FOLDER,
-)
+
+import os
+MAIL_HOST = os.getenv("MAIL_HOST")
+MAIL_PORT = int(os.getenv("MAIL_PORT"))
+MAIL_USER = os.getenv("MAIL_USER")
+MAIL_PASSWORD = os.getenv("MAIL_PASSWORD")
+MAIL_FOLDER = os.getenv("MAIL_FOLDER", "INBOX")
 
 def connect():
     server = IMAPClient(MAIL_HOST, port=MAIL_PORT, ssl=True)
