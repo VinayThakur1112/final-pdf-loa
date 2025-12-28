@@ -12,6 +12,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY app/ app/
 COPY app/common app/common
 COPY app/gcp app/gcp
+COPY main.py .
 
 ENV PYTHONUNBUFFERED=1
 
