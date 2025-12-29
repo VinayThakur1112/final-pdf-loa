@@ -68,7 +68,7 @@ def listen():
 
                 event = {
                     "source": "email",
-                    "file_path": file_path,
+                    # "file_path": file_path,
                     "filename": os.path.basename(file_path),
                     "tid": tid,
                     "bucket": upload_result["bucket"],

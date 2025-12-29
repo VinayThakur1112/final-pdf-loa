@@ -15,8 +15,8 @@ spec:
       serviceAccountName: pdf-processor-sa
       containers:
       - name: pdf-processor
-        image: asia-south1-docker.pkg.dev/final-pdf-loa/dit-repo/pdf-processor:v3
+        image: asia-south1-docker.pkg.dev/final-pdf-loa/dit-repo/pdf-processor:v4
         imagePullPolicy: Always
         envFrom:
         - secretRef:
-            name: app-config
+            name: app-config-v2
