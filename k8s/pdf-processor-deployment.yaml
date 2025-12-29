@@ -19,4 +19,10 @@ spec:
         imagePullPolicy: Always
         envFrom:
         - secretRef:
-            name: app-config-v2
+            name: app-config-v3
+      - name: cloud-sql-proxy
+        image: gcr.io/cloud-sql-connectors/cloud-sql-proxy:2.11.0
+        args:
+          - "--structured-logs"
+          - "--port=5432"
+          - "final-pdf-loa:asia-south1:dit-database"
