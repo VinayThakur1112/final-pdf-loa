@@ -15,14 +15,14 @@ spec:
       serviceAccountName: pdf-processor-sa
       containers:
       - name: pdf-processor
-        image: asia-south1-docker.pkg.dev/final-pdf-loa/dit-repo/pdf-processor:v4
+        image: asia-south1-docker.pkg.dev/final-pdf-loa/dit-repo/pdf-processor:v9
         imagePullPolicy: Always
         envFrom:
         - secretRef:
-            name: app-config-v3
+            name: app-config-v4
       - name: cloud-sql-proxy
         image: gcr.io/cloud-sql-connectors/cloud-sql-proxy:2.11.0
         args:
           - "--structured-logs"
           - "--port=5432"
-          - "final-pdf-loa:asia-south1:dit-database"
+          - "final-pdf-loa:asia-south1:dit-db"

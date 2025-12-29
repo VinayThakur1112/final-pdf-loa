@@ -22,8 +22,11 @@ def process_pdf(event: dict):
 
     # 1️⃣ Idempotency check
     metadata = get_metadata(bucket, object_name)
+    logger.info(f"PDF Metadata: {metadata}")
+    
     if metadata.get("status") != "unprocessed":
         logger.info("⚠️ PDF already processed. Skipping.")
+        logger.info(metadata.get("status"))
         return None
 
     try:

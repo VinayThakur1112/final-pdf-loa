@@ -19,4 +19,4 @@ spec:
         imagePullPolicy: Always
         envFrom:
         - secretRef:
-            name: app-config-v3
+            name: app-config-v4
