@@ -15,3 +15,10 @@ if __name__ == "__main__":
             start_subscriber()
         except KeyboardInterrupt:
             print("📄 PDF processor subscriber stopped by user")
+    
+    elif argv[1] == "customer_data":
+        from app.customer_data.load_data_bq import push_customer_data
+        try:
+            push_customer_data()
+        except KeyboardInterrupt:
+            print("📄 Customer data subscriber stopped by user")
